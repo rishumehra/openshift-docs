@@ -1254,6 +1254,10 @@ If you are using the option `--keep-manifest-list=true`, the only valid value fo
 
 * With Serverless 0.10, the latest supported versions were updated for `trigger`, `subscription`, `channel`, and `IMC`.  Static models corresponding to each showed an API version of `beta`. The API version for eventing resources is now updated to `v1` and the UI now shows the latest supported version. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1890104[*BZ#1890104*])
 
+* Previously, in the *YAML view* of the Helm installation form only the YAML schema or code was shown. There was no option to provide and view comments with parameters. Now you can view parameters in defined order with comments. A *Schema* viewer is added to the page, next to *YAML* editor to check all the schema objects present in the Helm Chart. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1886861[*BZ#1886861*])
+
+* Previously, all Pods were failing with the `ErrImagePull` and `ImagePullBackOff` errors, even after an Image Pull Secret was added to access the external private image container registry. This is because the image download failed as it had no permissions for the external image registry and the cluster tried to load the container image directly from the external URL without the provided secret. As a result, the deployment was stuck until the service account or deployment was updated manually. Now, the issue is fixed and new deployments can start pods from the internal private container registry and import a container image from an external private container registry without any additional changes to the service account or deployment. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1924955[*BZ#1924955*])
+
 *DNS*
 
 * Previously, a cluster might experience intermittent DNS resolution errors because the `/etc/hosts` file on some nodes included invalid entries. With this release, DNS resolution no longer fails because of an `/etc/hosts` file with invalid entries. (link:https://bugzilla.redhat.com/show_bug.cgi?id=1882485[*BZ#1882485*])
